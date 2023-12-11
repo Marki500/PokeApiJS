@@ -2,3 +2,10 @@
     font-size: 50px;
     text-align: center;
 }
+.pokemon-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
+    gap: 2rem;
+    width: 1500px;
+    margin: auto;
+}
