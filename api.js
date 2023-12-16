@@ -33,6 +33,7 @@ function getPokemons(pokemonArray){
         const divTypes = document.createElement('div');
         pokemonBox.classList.add("pokemonCard")
         namePokemon.classList.add("namePokemon")
+        divTypes.classList.add("divTypes");
         pokemonListContent.appendChild(pokemonBox);
         namePokemon.textContent = pokemon.name
         pokemonBox.appendChild(namePokemon)
@@ -40,20 +41,10 @@ function getPokemons(pokemonArray){
 
         fetch(`https://pokeapi.co/api/v2/pokemon/` + pokemon.name)
             .then(response => response.json())
-            .then(data => {
+            .then(data => { 
                 const imagePokemon = document.createElement('img');
                 imagePokemon.src = data.sprites.front_default;
                 pokemonBox.appendChild(imagePokemon);
-                if(data.types.length === 2){
-                    var firstColor = colours[data.types[0].type.name];
-                    var secondColor = colours[data.types[1].type.name];
-
-                    console.log(`linear-gradient(to bottom, ${firstColor}, ${secondColor})`)
-                    pokemonBox.style.background = `linear-gradient(to bottom, ${firstColor}, ${secondColor})`;
-                }
-                else{
-                    pokemonBox.style.backgroundColor = colours[data.types[0].type.name];
-                }
                 
                 data.types.forEach(type => {
                     const typeElement = document.createElement('span');

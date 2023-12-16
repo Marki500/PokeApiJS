@@ -1,61 +1,69 @@
 @font-face {
-    font-family: 'Pokemon Hollow';
-    src: url('fonts/Pokemon\ Hollow.ttf') format('truetype');
-    font-style: normal;
-    font-weight: normal;
-  }
-  @font-face {
-    font-family: 'Pokemon Solid';
-    src: url('fonts/Pokemon\ Solid.ttf') format('truetype');
-    font-style: normal;
-    font-weight: normal;
-  }
+  font-family: 'Pokemon Hollow';
+  src: url('fonts/Pokemon\ Hollow.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Pokemon Solid';
+  src: url('fonts/Pokemon\ Solid.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
 
 .namePokemon{
-    font-family: 'Pokemon Solid';
-    letter-spacing: 0.25em;
-    word-spacing: 0.25em;
+  font-family: 'Pokemon Solid';
+  letter-spacing: 0.25em;
+  word-spacing: 0.25em;
 }
 .main-title{
-    font-size: 50px;
-    text-align: center;
+  font-size: 50px;
+  text-align: center;
 }
 .pokemon-list{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
-    gap: 2rem;
-    margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
+  gap: 2rem;
+  margin: auto;
 }
 .pokemon-list {
-    display: flex;
-    justify-content: space-around;
-    flex-flow: wrap;
-  }
-  
+  display: flex;
+  justify-content: space-around;
+  flex-flow: wrap;
+}
+
+.pokemonCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+  background: #fff;
+  border: 3px solid;
+  margin-bottom: 50px;
+  transition: 0.3s;
+  height: 250px;
+  justify-content: center;
+}
+.divTypes{
+  color: #fff;
+  height: 25px;
+  width: 100px;
+  padding: 5px 10px 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+@media screen and (max-width: 1000px) {
   .pokemonCard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 20%;
-    background: #fff;
-    border: 1px solid #ccc;
-    margin-bottom: 50px;
-    transition: 0.3s;
-    height: 250px;
-    justify-content: center;
-    border-radius: 20px;
+    width: 40%;
   }
+}
 
+@media screen and (max-width: 620px) {
 
-  @media screen and (max-width: 1000px) {
-    .pokemonCard {
-      width: 40%;
-    }
+  .pokemonCard {
+    width: 80%;
   }
-  
-  @media screen and (max-width: 620px) {
-  
-    .pokemonCard {
-      width: 80%;
-    }
-  }
+}
