@@ -20,7 +20,7 @@ const colours = {
 	fairy: '#D685AD',
 };
 
-fetch('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0')
+fetch('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0')
     .then(response => response.json())
     .then(data => getPokemons(data.results))
     .catch(error => console.error('There was a problem with the fetch operation:', error))
@@ -44,11 +44,20 @@ function getPokemons(pokemonArray){
                 const imagePokemon = document.createElement('img');
                 imagePokemon.src = data.sprites.front_default;
                 pokemonBox.appendChild(imagePokemon);
+                if(data.types.length === 2){
+                    var firstColor = colours[data.types[0].type.name];
+                    var secondColor = colours[data.types[1].type.name];
+
+                    console.log(`linear-gradient(to bottom, ${firstColor}, ${secondColor})`)
+                    pokemonBox.style.background = `linear-gradient(to bottom, ${firstColor}, ${secondColor})`;
+                }
+                else{
+                    pokemonBox.style.backgroundColor = colours[data.types[0].type.name];
+                }
                 
                 data.types.forEach(type => {
                     const typeElement = document.createElement('span');
                     typeElement.textContent = type.type.name;
-                    typeElement.style.backgroundColor = colours[type.type.name];
                     divTypes.appendChild(typeElement);
                 });
             })
