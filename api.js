@@ -20,7 +20,7 @@ const colours = {
 	fairy: '#D685AD',
 };
 
-fetch('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0')
+fetch('https://pokeapi.co/api/v2/pokemon?limit=20&offset=0')
     .then(response => response.json())
     .then(data => getPokemons(data.results))
     .catch(error => console.error('There was a problem with the fetch operation:', error))
@@ -40,10 +40,20 @@ function getPokemons(pokemonArray){
 
         fetch(`https://pokeapi.co/api/v2/pokemon/` + pokemon.name)
             .then(response => response.json())
-            .then(data => {
+            .then(data => { 
                 const imagePokemon = document.createElement('img');
                 imagePokemon.src = data.sprites.front_default;
                 pokemonBox.appendChild(imagePokemon);
+
+                if(data.types.length === 2){
+                    var firstColor = colours[data.types[0].type.name];
+                    var secondColor = colours[data.types[1].type.name];
+                    console.log(`linear-gradient(to bottom, ${firstColor}, ${secondColor})1;`)
+                    pokemonBox.style.borderImage = `linear-gradient(to bottom, ${firstColor}, ${secondColor}) 1`;
+                }else{
+                    var oneColor = colours[data.types[0].type.name];
+                    pokemonBox.style.borderColor = oneColor;
+                }
                 
                 data.types.forEach(type => {
                     const typeElement = document.createElement('span');

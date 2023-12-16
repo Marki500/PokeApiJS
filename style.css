@@ -38,9 +38,11 @@
     align-items: center;
     width: 20%;
     background: #fff;
-    border: 1px solid #ccc;
+    border: 3px solid;
     margin-bottom: 50px;
     transition: 0.3s;
+    height: 250px;
+    justify-content: center;
   }
 
 
