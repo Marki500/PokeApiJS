@@ -33,6 +33,7 @@ function getPokemons(pokemonArray){
         const divTypes = document.createElement('div');
         pokemonBox.classList.add("pokemonCard")
         namePokemon.classList.add("namePokemon")
+        divTypes.classList.add("divTypes");
         pokemonListContent.appendChild(pokemonBox);
         namePokemon.textContent = pokemon.name
         pokemonBox.appendChild(namePokemon)
@@ -48,8 +49,8 @@ function getPokemons(pokemonArray){
                 if(data.types.length === 2){
                     var firstColor = colours[data.types[0].type.name];
                     var secondColor = colours[data.types[1].type.name];
-                    console.log(`linear-gradient(to bottom, ${firstColor}, ${secondColor})1;`)
                     pokemonBox.style.borderImage = `linear-gradient(to bottom, ${firstColor}, ${secondColor}) 1`;
+                    divTypes.style.background = `linear-gradient(45deg, ${firstColor} 0%, ${secondColor} 100%)`;
                 }else{
                     var oneColor = colours[data.types[0].type.name];
                     pokemonBox.style.borderColor = oneColor;
@@ -58,7 +59,6 @@ function getPokemons(pokemonArray){
                 data.types.forEach(type => {
                     const typeElement = document.createElement('span');
                     typeElement.textContent = type.type.name;
-                    typeElement.style.backgroundColor = colours[type.type.name];
                     divTypes.appendChild(typeElement);
                 });
             })
