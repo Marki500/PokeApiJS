@@ -20,12 +20,25 @@ const colours = {
 	fairy: '#D685AD',
 };
 
+function getURL(url){
+    url = 'https://pokeapi.co/api/v2/pokemon?limit=10&offset=0';
+}
+
+
 fetch('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0')
     .then(response => response.json())
     .then(data => getPokemons(data.results))
     .catch(error => console.error('There was a problem with the fetch operation:', error))
 
+var buttonPrevious = document.getElementById('button-previous')
+var buttonNext = document.getElementById('button-next')
+
+buttonPrevious.onclick = function(){
+    
+}
+
 function getPokemons(pokemonArray){
+
     pokemonArray.forEach(pokemon => {
 
         const pokemonBox = document.createElement('div')
@@ -45,11 +58,31 @@ function getPokemons(pokemonArray){
                 const imagePokemon = document.createElement('img');
                 imagePokemon.src = data.sprites.front_default;
                 pokemonBox.appendChild(imagePokemon);
+
+                if(data.types.length === 2){
+                    var firstColor = colours[data.types[0].type.name]
+                    var secondColor = colours[data.types[1].type.name]
+                    pokemonBox.style.backgroundImage = `linear-gradient(90deg, white, white),
+                    linear-gradient(180deg, ${firstColor}, ${secondColor})`;
+                    divTypes.style.backgroundImage = `linear-gradient(to right, ${firstColor}, ${secondColor})`;
+
+                }
+                else{
+                    var oneColor = colours[data.types[0].type.name]
+                    pokemonBox.style.borderColor = oneColor;
+                    divTypes.style.backgroundColor = oneColor;
+                }
                 
                 data.types.forEach(type => {
                     const typeElement = document.createElement('span');
                     typeElement.textContent = type.type.name;
                     divTypes.appendChild(typeElement);
+                    
+                    if(data.types.length === 2){
+                        divTypes.style.justifyContent = 'space-between';
+                    }else{
+                        divTypes.style.justifyContent= 'center';
+                    }
                 });
             })
             .catch(error => console.error('There was a problem with the fetch operation:', error))

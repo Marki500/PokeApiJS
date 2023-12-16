@@ -17,6 +17,8 @@
   word-spacing: 0.25em;
 }
 .main-title{
+  font-family: 'Pokemon Solid';
+  letter-spacing: 5px;
   font-size: 50px;
   text-align: center;
 }
@@ -32,38 +34,29 @@
   flex-flow: wrap;
 }
 
-.pokemonCard {
+.pokemonCard{
+  flex: 0 1 24%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 20%;
-  background: #fff;
-  border: 3px solid;
-  margin-bottom: 50px;
   transition: 0.3s;
   height: 250px;
   justify-content: center;
+  background: transparent;
+  padding: 0.5rem 1rem;
+  background-clip: padding-box, border-box;
+  background-origin: border-box;
+  border: 5px solid transparent;
+  border-radius: 1.75rem;
 }
 .divTypes{
   color: #fff;
   height: 25px;
   width: 100px;
-  padding: 5px 10px 5px 10px;
+  padding: 5px 15px 5px 15px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  border-radius: 25px;
 }
 
 
-@media screen and (max-width: 1000px) {
-  .pokemonCard {
-    width: 40%;
-  }
-}
-
-@media screen and (max-width: 620px) {
-
-  .pokemonCard {
-    width: 80%;
-  }
-}
