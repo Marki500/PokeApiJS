@@ -20,25 +20,45 @@ const colours = {
 	fairy: '#D685AD',
 };
 
-function getURL(url){
-    url = 'https://pokeapi.co/api/v2/pokemon?limit=10&offset=0';
-}
-
-
-fetch('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0')
-    .then(response => response.json())
-    .then(data => getPokemons(data.results))
-    .catch(error => console.error('There was a problem with the fetch operation:', error))
-
+let currentPage = 1;
+let nextUrl = '';
+let previousUrl = '';
 var buttonPrevious = document.getElementById('button-previous')
 var buttonNext = document.getElementById('button-next')
 
-buttonPrevious.onclick = function(){
-    
+buttonPrevious.onclick = function() {
+    if (previousUrl) {
+        fetchURL(previousUrl);
+    }
+}
+
+buttonNext.onclick = function() {
+    if (nextUrl) {
+        fetchURL(nextUrl);
+    }
+}
+
+
+function fetchURL(url){
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            nextUrl = data.next;
+            previousUrl = data.previous;
+            if(data.previous === null){
+                buttonPrevious.disabled = true;
+            }
+            getPokemons(data.results);
+        })
+        .catch(error => console.error('There was a problem with the fetch operation:', error))
+}
+
+function clearPokemonList() {
+    pokemonListContent.innerHTML = '';
 }
 
 function getPokemons(pokemonArray){
-
+    clearPokemonList();
     pokemonArray.forEach(pokemon => {
 
         const pokemonBox = document.createElement('div')
@@ -89,4 +109,5 @@ function getPokemons(pokemonArray){
 
     });
 }
- 
+
+fetchURL('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0');
