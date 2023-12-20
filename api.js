@@ -48,6 +48,9 @@ function fetchURL(url){
             if(data.previous === null){
                 buttonPrevious.disabled = true;
             }
+            else{
+                buttonPrevious.disabled = false;
+            }
             getPokemons(data.results);
         })
         .catch(error => console.error('There was a problem with the fetch operation:', error))
@@ -95,7 +98,12 @@ function getPokemons(pokemonArray){
                 
                 data.types.forEach(type => {
                     const typeElement = document.createElement('span');
-                    typeElement.textContent = type.type.name;
+                    const typeName = type.type.name;
+                    const firstLetter = typeName.charAt(0);
+                    const firstLetterCap = firstLetter.toUpperCase();
+                    const remainingTypeName = typeName.slice(1);
+                    const typeNameCapitalize = firstLetterCap + remainingTypeName;
+                    typeElement.textContent = typeNameCapitalize;
                     divTypes.appendChild(typeElement);
                     
                     if(data.types.length === 2){
@@ -110,4 +118,4 @@ function getPokemons(pokemonArray){
     });
 }
 
-fetchURL('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0');
+fetchURL('https://pokeapi.co/api/v2/pokemon?limit=12&offset=0');
