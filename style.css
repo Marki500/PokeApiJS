@@ -10,7 +10,12 @@
   font-style: normal;
   font-weight: normal;
 }
-
+.idPokemon{
+  font-family: 'Pokemon Solid';
+  position: absolute;
+  top: -20px;
+  right: 10px;
+}
 .namePokemon{
   font-family: 'Pokemon Solid';
   letter-spacing: 0.25em;
@@ -23,19 +28,17 @@
   text-align: center;
 }
 .pokemon-list{
+  max-width: 1500px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
   gap: 2rem;
   margin: auto;
-}
-.pokemon-list {
-  display: flex;
-  justify-content: space-around;
-  flex-flow: wrap;
+  justify-content: center;
 }
 
+
 .pokemonCard{
-  flex: 0 1 24%;
+  flex: 0 1 15%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -48,6 +51,7 @@
   background-origin: border-box;
   border: 5px solid transparent;
   border-radius: 1.75rem;
+  position: relative;
 }
 .divTypes{
   color: #fff;
